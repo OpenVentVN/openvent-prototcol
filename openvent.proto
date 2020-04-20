@@ -16,9 +16,16 @@ enum Command {
     CmdNone = 0;
     DeviceInfoRequest = 1;
     VentDataRequest = 2;
-    CheckFirmwareRequest = 3;
+    VentConfigRequest = 3;
     WriteFirmwareRequest = 4;
     ReadFirmwareRequest = 5;
+}
+
+enum WorkingMode {
+    CMV = 0; 
+    CPAP = 1; 
+    VAC = 2; 
+    TEST = 3; 
 }
 
 message DeviceInfo {
@@ -36,7 +43,6 @@ message FileData {
     bytes data = 5;
 }
 
-
 message VentData {
    uint32 breath_circulating_volumn = 1;
    uint32 breathing_frequency = 2;
@@ -44,11 +50,16 @@ message VentData {
    uint32 timestamp = 4;
 }
 
+message VentConfig {
+    WorkingMode mode = 1;
+}
+
 message VentRequest {
     Command cmd = 1;
     string access_key = 2;
     FileData read_firmware_request = 3;
     FileData write_firmware_request = 4;
+    VentConfig vent_config_request = 5;
 }
 
 message VentResponse {
