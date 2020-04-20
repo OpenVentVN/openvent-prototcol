@@ -19,6 +19,8 @@ enum Command {
     VentConfigRequest = 3;
     WriteFirmwareRequest = 4;
     ReadFirmwareRequest = 5;
+    WriteFileRequest = 6;
+    ReadFileRequest = 7;
 }
 
 enum WorkingMode {
@@ -59,12 +61,16 @@ message VentRequest {
     string access_key = 2;
     FileData read_firmware_request = 3;
     FileData write_firmware_request = 4;
-    VentConfig vent_config_request = 5;
+    FileData read_file_request = 5;
+    FileData write_file_request = 6;
+    VentConfig vent_config_request = 7;
+
 }
 
 message VentResponse {
     Status status = 1;
     DeviceInfo device_info_response = 2;
     FileData read_firmware_response = 3;
-    repeated VentData vent_data_response = 4;
+    FileData read_file_response = 4;
+    repeated VentData vent_data_response = 5;
 }
